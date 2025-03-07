@@ -1,0 +1,89 @@
+service: get-games-api  # Asegurar que esta línea existe
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  stage: dev
+  region: us-east-1
+  deploymentBucket:
+    name: serverless-framework-deployments-us-east-1-249181214292  # Especifica un bucket existente
+  environment:
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
+    DYNAMODB_TABLE: PlayStationGames
+    JWT_SECRET: ${ssm:/serverless-api/JWT_SECRET, 'supersecreto'}
+    NODE_ENV: production
+
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+          Resource: "arn:aws:logs:us-east-1:*:*"
+
+        - Effect: Allow
+          Action:
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:Query
+          Resource: 
+            - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/PlayStationGames"
+
+        - Effect: Allow
+          Action:
+            - execute-api:Invoke
+          Resource: 
+            - !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:*/*/*"
+
+        - Effect: Allow
+          Action:
+            - s3:ListBucket
+            - s3:GetObject
+            - s3:PutObject
+            - s3:DeleteObject
+          Resource:
+            - !Sub "arn:aws:s3:::serverless-framework-deployments-${AWS::Region}-${AWS::AccountId}"
+            - !Sub "arn:aws:s3:::serverless-framework-deployments-${AWS::Region}-${AWS::AccountId}/*"
+
+functions:
+  getGames:
+    handler: server.handler
+    memorySize: 256
+    timeout: 10
+    events:
+      - http:
+          path: api/games
+          method: get
+          cors:
+            origin: "*"
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - X-Amzn-Trace-Id
+            allowCredentials: false
+
+  authLogin:
+    handler: server.handler
+    memorySize: 256
+    timeout: 10
+    events:
+      - http:
+          path: api/auth/login
+          method: post
+          cors:
+            origin: "*"
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - X-Amzn-Trace-Id
+            allowCredentials: false
