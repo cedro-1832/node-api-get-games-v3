@@ -23,13 +23,21 @@ fi
 echo "✅ AWS_PROFILE configurado como: $AWS_PROFILE"
 echo "👤 Usuario autenticado: $CURRENT_USER"
 
-# Guardar la configuración en ~/.zshrc o ~/.bash_profile para persistencia
+# Verificar permisos de ~/.bash_profile o ~/.zshrc antes de escribir en ellos
 if [ -n "$ZSH_VERSION" ]; then
-  echo 'export AWS_PROFILE="serverless-deployer"' >> ~/.zshrc
-  source ~/.zshrc
+  if [ -w ~/.zshrc ]; then
+    echo 'export AWS_PROFILE="serverless-deployer"' >> ~/.zshrc
+    source ~/.zshrc
+  else
+    echo "⚠️ No se tienen permisos para escribir en ~/.zshrc"
+  fi
 elif [ -n "$BASH_VERSION" ]; then
-  echo 'export AWS_PROFILE="serverless-deployer"' >> ~/.bash_profile
-  source ~/.bash_profile
+  if [ -w ~/.bash_profile ]; then
+    echo 'export AWS_PROFILE="serverless-deployer"' >> ~/.bash_profile
+    source ~/.bash_profile
+  else
+    echo "⚠️ No se tienen permisos para escribir en ~/.bash_profile"
+  fi
 fi
 
 # 🔍 Verificar existencia del bucket S3
@@ -52,13 +60,27 @@ unset AWS_ACCESS_KEY_ID
 unset AWS_SECRET_ACCESS_KEY
 
 # 🧹 Limpiar e instalar dependencias
+echo "🧹 Limpiando dependencias previas..."
 rm -rf node_modules package-lock.json
 npm cache clean --force
 npm install --omit=dev
 
-# 📦 Empaquetar archivos para el despliegue
+# Verificar que dotenv está instalado
+if ! npm list dotenv >/dev/null 2>&1; then
+  echo "⚠️ dotenv no está instalado. Instalándolo..."
+  npm install dotenv
+fi
+
+# 📂 Verificar existencia de directorios antes de copiarlos
 mkdir -p dist
-cp -r server.js package.json config controllers middlewares models routes dist/
+
+for DIR in server.js package.json src; do
+  if [ -e "$DIR" ]; then
+    cp -r "$DIR" dist/
+  else
+    echo "⚠️ Advertencia: El directorio '$DIR' no existe y no será copiado."
+  fi
+done
 
 cd dist
 zip -r ../get-games.zip ./*
