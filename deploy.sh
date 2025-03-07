@@ -8,54 +8,47 @@ AWS_PROFILE="serverless-deployer"
 echo "⚙️ Configurando AWS_PROFILE correctamente..."
 export AWS_PROFILE="$AWS_PROFILE"
 
-# Eliminar credenciales previas en caso de estar configuradas
+# Eliminar credenciales previas para evitar conflictos
 unset AWS_ACCESS_KEY_ID
 unset AWS_SECRET_ACCESS_KEY
 
-# Verificar el usuario autenticado
+# Verificar el usuario autenticado en AWS
 CURRENT_USER=$(aws sts get-caller-identity --query 'Arn' --output text --profile "$AWS_PROFILE")
 
 if [ -z "$CURRENT_USER" ]; then
-  echo "❌ Error: No se pudo autenticar con AWS. Verifica que el perfil '$AWS_PROFILE' esté configurado correctamente en ~/.aws/credentials."
+  echo "❌ Error: No se pudo autenticar con AWS. Verifica el perfil '$AWS_PROFILE'."
   exit 1
 fi
 
 echo "✅ AWS_PROFILE configurado como: $AWS_PROFILE"
 echo "👤 Usuario autenticado: $CURRENT_USER"
 
-# Verificar permisos de ~/.bash_profile o ~/.zshrc antes de escribir en ellos
-if [ -n "$ZSH_VERSION" ]; then
-  if [ -w ~/.zshrc ]; then
-    echo 'export AWS_PROFILE="serverless-deployer"' >> ~/.zshrc
-    source ~/.zshrc
-  else
-    echo "⚠️ No se tienen permisos para escribir en ~/.zshrc"
-  fi
-elif [ -n "$BASH_VERSION" ]; then
-  if [ -w ~/.bash_profile ]; then
-    echo 'export AWS_PROFILE="serverless-deployer"' >> ~/.bash_profile
-    source ~/.bash_profile
-  else
-    echo "⚠️ No se tienen permisos para escribir en ~/.bash_profile"
-  fi
+# Validar permisos antes de escribir en archivos de configuración
+if [ -n "$ZSH_VERSION" ] && [ -w ~/.zshrc ]; then
+  echo 'export AWS_PROFILE="serverless-deployer"' >> ~/.zshrc
+  source ~/.zshrc
+elif [ -n "$BASH_VERSION" ] && [ -w ~/.bash_profile ]; then
+  echo 'export AWS_PROFILE="serverless-deployer"' >> ~/.bash_profile
+  source ~/.bash_profile
+else
+  echo "⚠️ No se tienen permisos para modificar ~/.bash_profile o ~/.zshrc"
 fi
 
-# 🔍 Verificar existencia del bucket S3
+# 🔍 Verificar y crear bucket S3 si no existe
 BUCKET_NAME="serverless-framework-deployments-us-east-1-$(aws sts get-caller-identity --query 'Account' --output text --profile "$AWS_PROFILE")"
 
-echo "🔍 Verificando existencia del bucket S3: $BUCKET_NAME..."
+echo "🔍 Verificando bucket S3: $BUCKET_NAME..."
 if ! aws s3 ls "s3://$BUCKET_NAME" --profile "$AWS_PROFILE" --region "$AWS_REGION" &>/dev/null; then
-    echo "⚠️ El bucket $BUCKET_NAME no existe. Creándolo..."
-    aws s3 mb "s3://$BUCKET_NAME" --region "$AWS_REGION" --profile "$AWS_PROFILE"
-    echo "✅ Bucket $BUCKET_NAME creado exitosamente."
+  echo "⚠️ Bucket no encontrado. Creándolo..."
+  aws s3 mb "s3://$BUCKET_NAME" --region "$AWS_REGION" --profile "$AWS_PROFILE"
+  echo "✅ Bucket $BUCKET_NAME creado exitosamente."
 else
-    echo "✅ El bucket $BUCKET_NAME ya existe."
+  echo "✅ Bucket $BUCKET_NAME ya existe."
 fi
 
-# 🚀 Iniciar despliegue de la API en AWS
+# 🚀 Preparar el despliegue
 echo "🚀 Iniciando despliegue de la API Get Games en AWS..."
 
-# Evitar conflictos en credenciales
 unset AWS_ACCESS_KEY_ID
 unset AWS_SECRET_ACCESS_KEY
 
