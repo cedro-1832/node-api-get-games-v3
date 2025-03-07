@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config(); // Asegura que las variables de entorno se carguen
+require('dotenv').config(); // Asegura que las variables de entorno se carguen correctamente
 
 exports.login = async (req, res, next) => {
     try {
@@ -12,7 +12,8 @@ exports.login = async (req, res, next) => {
 
         // Validar que JWT_SECRET está definido
         if (!process.env.JWT_SECRET) {
-            throw new Error("JWT_SECRET no está definido en el entorno");
+            console.error("❌ ERROR: JWT_SECRET no está definido en el entorno");
+            return res.status(500).json({ message: "Error interno del servidor", error: "JWT_SECRET no está definido en el entorno" });
         }
 
         const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: '1h' });
