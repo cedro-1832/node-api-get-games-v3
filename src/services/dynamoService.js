@@ -1,12 +1,12 @@
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
 const { DynamoDBDocumentClient, ScanCommand } = require("@aws-sdk/lib-dynamodb");
-const { fromIni } = require("@aws-sdk/credential-provider-ini");
+const { fromEnv } = require("@aws-sdk/credential-provider-env");
 require('dotenv').config(); // Cargar variables de entorno
 
 // Configuración de DynamoDB
 const client = new DynamoDBClient({
     region: process.env.AWS_REGION,
-    credentials: fromIni() // Carga credenciales automáticamente desde ~/.aws/credentials
+    credentials: fromEnv() // Usa credenciales desde variables de entorno
 });
 
 const docClient = DynamoDBDocumentClient.from(client);
