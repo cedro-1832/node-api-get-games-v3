@@ -157,7 +157,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-3e2cf282-a30b",
-                "S3Key": "serverless/get-games-api-v3/dev/1741554586250-2025-03-09T21:09:46.250Z/get-games-api-v3.zip"
+                "S3Key": "serverless/get-games-api-v3/dev/1741554820440-2025-03-09T21:13:40.440Z/get-games-api-v3.zip"
               },
               "Handler": "server.handler",
               "Runtime": "nodejs20.x",
@@ -183,14 +183,14 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionglJvGwbMxSS0LMHzkRMUD8xx4rXZUuxU1oQmOBcGa4": {
+          "ApiLambdaVersiongObHIjgTyoGttVcOcxbjFSB1C9ougzsEpXZ1EvgEo": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "3bnmfnb/Jd3MKk2m0KDMJhDim4h+E5p2d1AtOG88wio="
+              "CodeSha256": "m+JorQa9SM+gL2lwuNTMvs1hhJrFEyhAwUG/gUn0DTI="
             }
           },
           "ApiGatewayRestApi": {
@@ -323,7 +323,7 @@
               "ApiLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1741554575192": {
+          "ApiGatewayDeployment1741554810557": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -384,7 +384,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionglJvGwbMxSS0LMHzkRMUD8xx4rXZUuxU1oQmOBcGa4"
+              "Ref": "ApiLambdaVersiongObHIjgTyoGttVcOcxbjFSB1C9ougzsEpXZ1EvgEo"
             },
             "Export": {
               "Name": "sls-get-games-api-v3-dev-ApiLambdaFunctionQualifiedArn"
@@ -457,7 +457,7 @@
         "memory": 256,
         "runtime": "nodejs20.x",
         "vpc": {},
-        "versionLogicalId": "ApiLambdaVersionglJvGwbMxSS0LMHzkRMUD8xx4rXZUuxU1oQmOBcGa4"
+        "versionLogicalId": "ApiLambdaVersiongObHIjgTyoGttVcOcxbjFSB1C9ougzsEpXZ1EvgEo"
       }
     },
     "configValidationMode": "warn",
@@ -477,7 +477,7 @@
     "artifact": "/Users/ic-2024/Project/node-api-get-games-v3/.serverless/get-games-api-v3.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/get-games-api-v3/dev/1741554586250-2025-03-09T21:09:46.250Z",
+    "artifactDirectoryName": "serverless/get-games-api-v3/dev/1741554820440-2025-03-09T21:13:40.440Z",
     "artifact": "get-games-api-v3.zip"
   }
 }
