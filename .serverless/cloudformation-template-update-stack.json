@@ -123,8 +123,8 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "S3Bucket": "serverless-framework-deployments-us-east-1-249181214292",
-          "S3Key": "serverless/get-games-api-v3/dev/1741553419402-2025-03-09T20:50:19.402Z/get-games-api-v3.zip"
+          "S3Bucket": "serverless-framework-deployments-us-east-1-3e2cf282-a30b",
+          "S3Key": "serverless/get-games-api-v3/dev/1741554178893-2025-03-09T21:02:58.893Z/get-games-api-v3.zip"
         },
         "Handler": "server.handler",
         "Runtime": "nodejs20.x",
@@ -150,14 +150,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersion2lmlsyL4lysoHclPf8wnbNHJdPCcn0rIfK0iUBx20": {
+    "ApiLambdaVersionf1qnNYwW5IGAPUN96weWfW5znZtFLoajq6pWmBBSg9E": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "ODWRlYICVJAaVrFCpukdH/Tn/sR5ypkFxN1Y9fkS1KI="
+        "CodeSha256": "/HTIWzIERe7cg6BLvxOzEF3WfTztgrURrK7NdHR08lg="
       }
     },
     "ApiGatewayRestApi": {
@@ -290,7 +290,7 @@
         "ApiLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1741553409979": {
+    "ApiGatewayDeployment1741554168314": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -343,7 +343,7 @@
   },
   "Outputs": {
     "ServerlessDeploymentBucketName": {
-      "Value": "serverless-framework-deployments-us-east-1-249181214292",
+      "Value": "serverless-framework-deployments-us-east-1-3e2cf282-a30b",
       "Export": {
         "Name": "sls-get-games-api-v3-dev-ServerlessDeploymentBucketName"
       }
@@ -351,7 +351,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersion2lmlsyL4lysoHclPf8wnbNHJdPCcn0rIfK0iUBx20"
+        "Ref": "ApiLambdaVersionf1qnNYwW5IGAPUN96weWfW5znZtFLoajq6pWmBBSg9E"
       },
       "Export": {
         "Name": "sls-get-games-api-v3-dev-ApiLambdaFunctionQualifiedArn"
