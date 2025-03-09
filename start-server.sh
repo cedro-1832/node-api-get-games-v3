@@ -28,12 +28,13 @@ fi
 # 4️⃣ Limpiar dependencias previas si existen
 if [ -d "node_modules" ] || [ -f "package-lock.json" ]; then
   echo "🧹 Limpiando dependencias..."
-  rm -rf node_modules package-lock.json
+  sudo rm -rf node_modules package-lock.json
+  npm cache clean --force
 fi
 
 # 5️⃣ Reinstalar dependencias
 echo "📦 Instalando dependencias..."
-npm install --silent
+npm install --silent --omit=dev
 
 # 6️⃣ Iniciar servidor con nodemon
 echo "🚀 Iniciando el servidor..."

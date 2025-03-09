@@ -52,17 +52,22 @@ echo "🚀 Iniciando despliegue de la API Get Games en AWS..."
 unset AWS_ACCESS_KEY_ID
 unset AWS_SECRET_ACCESS_KEY
 
-# 🧹 Limpiar e instalar dependencias
-echo "🧹 Limpiando dependencias previas..."
-rm -rf node_modules package-lock.json
-npm cache clean --force
-npm install --omit=dev
-
 # Verificar que dotenv está instalado
+echo "🧹 Verificar que dotenv está instalados..."
 if ! npm list dotenv >/dev/null 2>&1; then
   echo "⚠️ dotenv no está instalado. Instalándolo..."
   npm install dotenv
 fi
+
+# 🧹 Limpiar e instalar dependencias
+echo "🧹 Limpiando dependencias previas..."
+rm -rf node_modules package-lock.json
+npm cache clean --force
+# npm install --omit=dev
+npm install dotenv serverless-http --save  # Instala dependencias requeridas
+
+
+
 
 # 📂 Verificar existencia de directorios antes de copiarlos
 mkdir -p dist
