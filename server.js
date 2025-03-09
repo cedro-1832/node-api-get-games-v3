@@ -5,9 +5,9 @@ const serverless = require("serverless-http");
 const app = express();
 app.use(express.json());
 
-// Rutas
-const gameRoutes = require("./routes/gameRoutes");
-const authRoutes = require("./routes/authRoutes");
+// Importación correcta de rutas
+const gameRoutes = require("./src/routes/gameRoutes");
+const authRoutes = require("./src/routes/authRoutes");
 
 // Definir endpoints
 app.use("/api/games", gameRoutes);

@@ -52,11 +52,15 @@ echo "🚀 Iniciando despliegue de la API Get Games en AWS..."
 unset AWS_ACCESS_KEY_ID
 unset AWS_SECRET_ACCESS_KEY
 
-# Verificar que dotenv está instalado
-echo "🧹 Verificar que dotenv está instalados..."
+# Verificar que dotenv y serverless-http están instalados
 if ! npm list dotenv >/dev/null 2>&1; then
   echo "⚠️ dotenv no está instalado. Instalándolo..."
-  npm install dotenv
+  npm install dotenv --save
+fi
+
+if ! npm list serverless-http >/dev/null 2>&1; then
+  echo "⚠️ serverless-http no está instalado. Instalándolo..."
+  npm install serverless-http --save
 fi
 
 # 🧹 Limpiar e instalar dependencias
