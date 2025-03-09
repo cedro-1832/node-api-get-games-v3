@@ -6,7 +6,6 @@ console.log("🔐 JWT_SECRET:", process.env.JWT_SECRET ? "Cargado correctamente"
 const express = require("express");
 const serverless = require("serverless-http");
 
-// 🔴 Asegurar que lodash.includes está instalado correctamente
 try {
     require.resolve("lodash.includes");
     console.log("✅ lodash.includes encontrado");

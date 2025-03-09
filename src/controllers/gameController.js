@@ -9,35 +9,30 @@ exports.getGames = async (req, res, next) => {
             return res.status(404).json({ message: "No hay juegos disponibles en la base de datos" });
         }
 
-        // Filtrar juegos por nombre
         if (name) {
             games = games.filter(game =>
                 game.play_nombre.toLowerCase().includes(name.toLowerCase())
             );
         }
 
-        // Filtrar por plataforma
         if (platforms) {
             games = games.filter(game =>
                 game.play_platforms.toLowerCase() === platforms.toLowerCase()
             );
         }
 
-        // Filtrar por edición
         if (edition) {
             games = games.filter(game =>
                 game.play_edition.toLowerCase() === edition.toLowerCase()
             );
         }
 
-        // Filtrar por servicio adicional
         if (service) {
             games = games.filter(game =>
                 game.play_additional_service.toLowerCase() === service.toLowerCase()
             );
         }
 
-        // Ordenamiento
         if (sort) {
             switch (sort) {
                 case "name":

@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const lodashIncludes = require('lodash.includes'); // 🔴 Asegurar que lodash.includes está disponible
 
 module.exports = (req, res, next) => {
     const authHeader = req.header('Authorization');
