@@ -1,4 +1,8 @@
 require("dotenv").config({ path: __dirname + "/.env" });
+
+console.log("🔍 Cargando configuración con dotenv...");
+console.log("🔐 JWT_SECRET:", process.env.JWT_SECRET ? "Cargado correctamente" : "No definido");
+
 const express = require("express");
 const serverless = require("serverless-http");
 

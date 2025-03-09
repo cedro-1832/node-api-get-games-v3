@@ -33,13 +33,13 @@ fi
 
 echo "🚀 Iniciando despliegue de la API Get Games en AWS..."
 
-echo "📦 Instalando dependencias necesarias..."
-npm install --save dotenv serverless-http jsonwebtoken jws
 
-echo "🧹 Limpiando dependencias previas..."
+echo "📦 Instalando dependencias necesarias..."
 rm -rf node_modules package-lock.json
 npm cache clean --force
+npm install --save dotenv serverless-http jsonwebtoken jws lodash.includes
 npm install
+
 
 serverless deploy --stage dev --region "$AWS_REGION" --aws-profile "$AWS_PROFILE"
 
