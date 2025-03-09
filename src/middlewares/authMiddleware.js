@@ -13,6 +13,7 @@ module.exports = (req, res, next) => {
         req.user = verified;
         next();
     } catch (error) {
+        console.error("Error de autenticación:", error);
         return res.status(401).json({ message: "Token inválido" });
     }
 };
