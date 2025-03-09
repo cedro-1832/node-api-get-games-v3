@@ -1,18 +1,15 @@
-service: get-games-api-v3  # Asegurar que esta línea existe
+service: get-games-api-v3
 
 provider:
   name: aws
   runtime: nodejs20.x
   stage: dev
   region: us-east-1
-  deploymentBucket:
-    name: serverless-framework-deployments-us-east-1-249181214292  # Especifica un bucket existente
   environment:
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
     DYNAMODB_TABLE: PlayStationGames
     JWT_SECRET: ${ssm:/serverless-api/JWT_SECRET, 'supersecreto'}
     NODE_ENV: production
-
   iam:
     role:
       statements:
@@ -39,11 +36,11 @@ provider:
 
 functions:
   api:
-    handler: server.handler  # Un solo handler para toda la API
+    handler: server.handler
     memorySize: 256
     timeout: 10
     events:
       - http:
-          path: api/{proxy+}  # Maneja todos los endpoints en una sola función
+          path: api/{proxy+}
           method: any
           cors: true

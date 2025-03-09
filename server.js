@@ -1,4 +1,4 @@
-require("dotenv").config();  // Cargar variables de entorno
+require("dotenv").config({ path: __dirname + "/.env" });
 const express = require("express");
 const serverless = require("serverless-http");
 

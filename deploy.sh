@@ -39,15 +39,7 @@ fi
 echo "🚀 Iniciando despliegue de la API Get Games en AWS..."
 
 # Verificar si `dotenv` y `serverless-http` están instalados
-if ! npm list dotenv >/dev/null 2>&1; then
-  echo "⚠️ dotenv no está instalado. Instalándolo..."
-  npm install dotenv --save
-fi
-
-if ! npm list serverless-http >/dev/null 2>&1; then
-  echo "⚠️ serverless-http no está instalado. Instalándolo..."
-  npm install serverless-http --save
-fi
+npm install --save dotenv serverless-http
 
 # 🧹 Limpiar e instalar dependencias
 echo "🧹 Limpiando dependencias previas..."
