@@ -23,17 +23,6 @@ fi
 echo "✅ AWS_PROFILE configurado como: $AWS_PROFILE"
 echo "👤 Usuario autenticado: $CURRENT_USER"
 
-# Validar permisos antes de escribir en archivos de configuración
-if [ -n "$ZSH_VERSION" ] && [ -w ~/.zshrc ]; then
-  echo 'export AWS_PROFILE="serverless-deployer"' >> ~/.zshrc
-  source ~/.zshrc
-elif [ -n "$BASH_VERSION" ] && [ -w ~/.bash_profile ]; then
-  echo 'export AWS_PROFILE="serverless-deployer"' >> ~/.bash_profile
-  source ~/.bash_profile
-else
-  echo "⚠️ No se tienen permisos para modificar ~/.bash_profile o ~/.zshrc"
-fi
-
 # 🔍 Verificar y crear bucket S3 si no existe
 BUCKET_NAME="serverless-framework-deployments-us-east-1-$(aws sts get-caller-identity --query 'Account' --output text --profile "$AWS_PROFILE")"
 
@@ -48,9 +37,6 @@ fi
 
 # 🚀 Preparar el despliegue
 echo "🚀 Iniciando despliegue de la API Get Games en AWS..."
-
-unset AWS_ACCESS_KEY_ID
-unset AWS_SECRET_ACCESS_KEY
 
 # Verificar que dotenv y serverless-http están instalados
 if ! npm list dotenv >/dev/null 2>&1; then
@@ -67,11 +53,7 @@ fi
 echo "🧹 Limpiando dependencias previas..."
 rm -rf node_modules package-lock.json
 npm cache clean --force
-# npm install --omit=dev
 npm install dotenv serverless-http --save  # Instala dependencias requeridas
-
-
-
 
 # 📂 Verificar existencia de directorios antes de copiarlos
 mkdir -p dist
