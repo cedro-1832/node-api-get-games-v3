@@ -36,8 +36,7 @@ echo "🚀 Iniciando despliegue de la API Get Games en AWS..."
 echo "📦 Limpiando e instalando dependencias necesarias..."
 rm -rf node_modules package-lock.json
 npm cache clean --force
-npm install --save dotenv serverless-http jsonwebtoken jws lodash.includes
-npm install
+npm install --omit=dev  # Instalar solo dependencias de producción
 
 # Asegurar permisos correctos en node_modules
 sudo chown -R $(whoami) ~/.npm

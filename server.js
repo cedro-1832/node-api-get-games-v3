@@ -1,11 +1,16 @@
-require("dotenv").config({ path: __dirname + "/.env" });
+require("dotenv").config();
 
 console.log("🔍 Cargando configuración con dotenv...");
-console.log("🔐 JWT_SECRET:", process.env.JWT_SECRET ? "Cargado correctamente" : "No definido");
+if (!process.env.JWT_SECRET) {
+    console.error("❌ ERROR: JWT_SECRET no definido en el entorno");
+    process.exit(1);
+}
+console.log("🔐 JWT_SECRET cargado correctamente");
 
 const express = require("express");
 const serverless = require("serverless-http");
 
+// Verificar la existencia del módulo lodash.includes
 try {
     require.resolve("lodash.includes");
     console.log("✅ lodash.includes encontrado");
