@@ -1,4 +1,4 @@
-service: get-games-api  # Asegurar que esta línea existe
+service: get-games-api-v3  # Asegurar que esta línea existe
 
 provider:
   name: aws
@@ -48,42 +48,12 @@ provider:
             - !Sub "arn:aws:s3:::serverless-framework-deployments-${AWS::Region}-${AWS::AccountId}/*"
 
 functions:
-  getGames:
-    handler: server.handler
+  api:
+    handler: src/server.handler  # Un solo handler para toda la API
     memorySize: 256
     timeout: 10
     events:
       - http:
-          path: api/games
-          method: get
-          cors:
-            origin: "*"
-            headers:
-              - Content-Type
-              - X-Amz-Date
-              - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
-              - X-Amzn-Trace-Id
-            allowCredentials: false
-
-  authLogin:
-    handler: server.handler
-    memorySize: 256
-    timeout: 10
-    events:
-      - http:
-          path: api/auth/login
-          method: post
-          cors:
-            origin: "*"
-            headers:
-              - Content-Type
-              - X-Amz-Date
-              - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
-              - X-Amzn-Trace-Id
-            allowCredentials: false
+          path: api/{proxy+}  # Maneja todos los endpoints en una sola función
+          method: any
+          cors: true
