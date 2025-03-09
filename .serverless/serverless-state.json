@@ -51,23 +51,6 @@
                   "Fn::Sub": "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:*/*/*"
                 }
               ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "s3:ListBucket",
-                "s3:GetObject",
-                "s3:PutObject",
-                "s3:DeleteObject"
-              ],
-              "Resource": [
-                {
-                  "Fn::Sub": "arn:aws:s3:::serverless-framework-deployments-${AWS::Region}-${AWS::AccountId}"
-                },
-                {
-                  "Fn::Sub": "arn:aws:s3:::serverless-framework-deployments-${AWS::Region}-${AWS::AccountId}/*"
-                }
-              ]
             }
           ]
         }
@@ -152,9 +135,6 @@
                       },
                       {
                         "$ref": "$[\"service\"][\"provider\"][\"iam\"][\"role\"][\"statements\"][2]"
-                      },
-                      {
-                        "$ref": "$[\"service\"][\"provider\"][\"iam\"][\"role\"][\"statements\"][3]"
                       }
                     ]
                   }
@@ -181,7 +161,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-249181214292",
-                "S3Key": "serverless/get-games-api-v3/dev/1741553092770-2025-03-09T20:44:52.770Z/get-games-api-v3.zip"
+                "S3Key": "serverless/get-games-api-v3/dev/1741553419402-2025-03-09T20:50:19.402Z/get-games-api-v3.zip"
               },
               "Handler": "server.handler",
               "Runtime": "nodejs20.x",
@@ -207,14 +187,14 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionkxPsiH4x1JHYBcrDMI9Tgx6aAcj2H6vwKTRpUoiMhA": {
+          "ApiLambdaVersion2lmlsyL4lysoHclPf8wnbNHJdPCcn0rIfK0iUBx20": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "LT1JecHoOO/BQ14RK/rAvkjV+RlpRerM3vINiYuTdfw="
+              "CodeSha256": "ODWRlYICVJAaVrFCpukdH/Tn/sR5ypkFxN1Y9fkS1KI="
             }
           },
           "ApiGatewayRestApi": {
@@ -347,7 +327,7 @@
               "ApiLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1741553083605": {
+          "ApiGatewayDeployment1741553409979": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -408,7 +388,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionkxPsiH4x1JHYBcrDMI9Tgx6aAcj2H6vwKTRpUoiMhA"
+              "Ref": "ApiLambdaVersion2lmlsyL4lysoHclPf8wnbNHJdPCcn0rIfK0iUBx20"
             },
             "Export": {
               "Name": "sls-get-games-api-v3-dev-ApiLambdaFunctionQualifiedArn"
@@ -481,7 +461,7 @@
         "memory": 256,
         "runtime": "nodejs20.x",
         "vpc": {},
-        "versionLogicalId": "ApiLambdaVersionkxPsiH4x1JHYBcrDMI9Tgx6aAcj2H6vwKTRpUoiMhA"
+        "versionLogicalId": "ApiLambdaVersion2lmlsyL4lysoHclPf8wnbNHJdPCcn0rIfK0iUBx20"
       }
     },
     "configValidationMode": "warn",
@@ -501,7 +481,7 @@
     "artifact": "/Users/ic-2024/Project/node-api-get-games-v3/.serverless/get-games-api-v3.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/get-games-api-v3/dev/1741553092770-2025-03-09T20:44:52.770Z",
+    "artifactDirectoryName": "serverless/get-games-api-v3/dev/1741553419402-2025-03-09T20:50:19.402Z",
     "artifact": "get-games-api-v3.zip"
   }
 }
