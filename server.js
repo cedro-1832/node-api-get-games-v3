@@ -1,11 +1,11 @@
-require("dotenv").config();
+require("dotenv").config();  // Cargar variables de entorno
 const express = require("express");
 const serverless = require("serverless-http");
 
 const app = express();
 app.use(express.json());
 
-// Importación correcta de rutas
+// Importación de rutas
 const gameRoutes = require("./src/routes/gameRoutes");
 const authRoutes = require("./src/routes/authRoutes");
 

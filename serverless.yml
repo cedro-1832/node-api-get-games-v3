@@ -37,16 +37,6 @@ provider:
           Resource: 
             - !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:*/*/*"
 
-        - Effect: Allow
-          Action:
-            - s3:ListBucket
-            - s3:GetObject
-            - s3:PutObject
-            - s3:DeleteObject
-          Resource:
-            - !Sub "arn:aws:s3:::serverless-framework-deployments-${AWS::Region}-${AWS::AccountId}"
-            - !Sub "arn:aws:s3:::serverless-framework-deployments-${AWS::Region}-${AWS::AccountId}/*"
-
 functions:
   api:
     handler: server.handler  # Un solo handler para toda la API

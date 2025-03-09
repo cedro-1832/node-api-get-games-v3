@@ -12,7 +12,7 @@ export AWS_PROFILE="$AWS_PROFILE"
 unset AWS_ACCESS_KEY_ID
 unset AWS_SECRET_ACCESS_KEY
 
-# Verificar el usuario autenticado en AWS
+# Verificar usuario autenticado en AWS
 CURRENT_USER=$(aws sts get-caller-identity --query 'Arn' --output text --profile "$AWS_PROFILE")
 
 if [ -z "$CURRENT_USER" ]; then
@@ -23,7 +23,7 @@ fi
 echo "✅ AWS_PROFILE configurado como: $AWS_PROFILE"
 echo "👤 Usuario autenticado: $CURRENT_USER"
 
-# 🔍 Verificar y crear bucket S3 si no existe
+# Verificar y crear bucket S3 si no existe
 BUCKET_NAME="serverless-framework-deployments-us-east-1-$(aws sts get-caller-identity --query 'Account' --output text --profile "$AWS_PROFILE")"
 
 echo "🔍 Verificando bucket S3: $BUCKET_NAME..."
@@ -38,7 +38,7 @@ fi
 # 🚀 Preparar el despliegue
 echo "🚀 Iniciando despliegue de la API Get Games en AWS..."
 
-# Verificar que dotenv y serverless-http están instalados
+# Verificar si `dotenv` y `serverless-http` están instalados
 if ! npm list dotenv >/dev/null 2>&1; then
   echo "⚠️ dotenv no está instalado. Instalándolo..."
   npm install dotenv --save
@@ -53,24 +53,7 @@ fi
 echo "🧹 Limpiando dependencias previas..."
 rm -rf node_modules package-lock.json
 npm cache clean --force
-npm install dotenv serverless-http --save  # Instala dependencias requeridas
-
-# 📂 Verificar existencia de directorios antes de copiarlos
-mkdir -p dist
-
-for DIR in server.js package.json src; do
-  if [ -e "$DIR" ]; then
-    cp -r "$DIR" dist/
-  else
-    echo "⚠️ Advertencia: El directorio '$DIR' no existe y no será copiado."
-  fi
-done
-
-cd dist
-zip -r ../get-games.zip ./*
-cd ..
-
-export AWS_PROFILE="$AWS_PROFILE"
+npm install  # Instala todas las dependencias correctamente
 
 # 🔄 Ejecutar despliegue con Serverless
 serverless deploy --stage dev --region "$AWS_REGION" --aws-profile "$AWS_PROFILE"

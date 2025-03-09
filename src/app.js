@@ -13,7 +13,7 @@ const app = express();
 
 // Seguridad y configuración
 app.use(helmet());
-app.use(cors({ origin: ['http://localhost:3000', 'https://miapp.aws.com'] }));
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 
 // Documentación Swagger
