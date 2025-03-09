@@ -10,16 +10,8 @@ console.log("🔐 JWT_SECRET cargado correctamente");
 const express = require("express");
 const serverless = require("serverless-http");
 
-// Verificar la existencia del módulo lodash.includes
-try {
-    require.resolve("lodash.includes");
-    console.log("✅ lodash.includes encontrado");
-} catch (err) {
-    console.error("❌ ERROR: lodash.includes no encontrado. Intenta reinstalar con 'npm install lodash.includes'");
-    process.exit(1);
-}
-
 const app = express();
+const PORT = process.env.PORT || 4000;  // Asegurar que use el puerto correcto
 app.use(express.json());
 
 const gameRoutes = require("./src/routes/gameRoutes");
@@ -30,6 +22,10 @@ app.use("/api/auth", authRoutes);
 
 app.use((req, res) => {
     res.status(404).json({ error: "Ruta no encontrada" });
+});
+
+app.listen(PORT, () => {
+    console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
 });
 
 module.exports.handler = serverless(app);

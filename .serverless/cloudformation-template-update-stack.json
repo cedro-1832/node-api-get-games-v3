@@ -124,7 +124,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-3e2cf282-a30b",
-          "S3Key": "serverless/get-games-api-v3/dev/1741557553767-2025-03-09T21:59:13.767Z/get-games-api-v3.zip"
+          "S3Key": "serverless/get-games-api-v3/dev/1741558576862-2025-03-09T22:16:16.862Z/get-games-api-v3.zip"
         },
         "Handler": "server.handler",
         "Runtime": "nodejs20.x",
@@ -150,14 +150,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersionjUF9ZnuRRDHqpbgpscbvmDnU5Rjt3PKloIuFdEWh10": {
+    "ApiLambdaVersiont9hOtxmEgAveQmthFQuhq8iMJfDZXagMIj66kBON3WI": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "bl9Tf/+1XaD7jpJTJrFnj8Hoewlro/op53gOVzbWKNU="
+        "CodeSha256": "xkjgGWHuJ7NCFv6/JvgUpJQbRmm2xa891Zr5BZd20HY="
       }
     },
     "ApiGatewayRestApi": {
@@ -290,7 +290,7 @@
         "ApiLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1741557544028": {
+    "ApiGatewayDeployment1741558566233": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -351,7 +351,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionjUF9ZnuRRDHqpbgpscbvmDnU5Rjt3PKloIuFdEWh10"
+        "Ref": "ApiLambdaVersiont9hOtxmEgAveQmthFQuhq8iMJfDZXagMIj66kBON3WI"
       },
       "Export": {
         "Name": "sls-get-games-api-v3-dev-ApiLambdaFunctionQualifiedArn"
