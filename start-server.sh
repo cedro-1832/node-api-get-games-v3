@@ -4,7 +4,7 @@ echo "🚀 Iniciando el servidor Node.js..."
 
 # 1️⃣ Detener todos los procesos de Node.js antes de iniciar el servidor
 echo "🛑 Matando todos los procesos de Node.js..."
-pkill -f node 2>/dev/null
+pkill -f node 2>/dev/null || true
 sleep 2  # Espera antes de continuar
 
 # 2️⃣ Verificar si el puerto 4000 sigue en uso
@@ -28,6 +28,8 @@ fi
 # 4️⃣ Limpiar dependencias previas si existen
 if [ -d "node_modules" ] || [ -f "package-lock.json" ]; then
   echo "🧹 Limpiando dependencias..."
+  sudo chown -R $(whoami) ~/.npm
+  sudo chown -R $(whoami) node_modules || true
   sudo rm -rf node_modules package-lock.json
   npm cache clean --force
 fi

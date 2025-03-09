@@ -34,13 +34,11 @@ fi
 echo "🚀 Iniciando despliegue de la API Get Games en AWS..."
 
 echo "📦 Limpiando e instalando dependencias necesarias..."
+sudo chown -R $(whoami) ~/.npm
+sudo chown -R $(whoami) node_modules || true
 rm -rf node_modules package-lock.json
 npm cache clean --force
 npm install --omit=dev  # Instalar solo dependencias de producción
-
-# Asegurar permisos correctos en node_modules
-sudo chown -R $(whoami) ~/.npm
-sudo chown -R $(whoami) node_modules
 
 serverless deploy --stage dev --region "$AWS_REGION" --aws-profile "$AWS_PROFILE"
 
