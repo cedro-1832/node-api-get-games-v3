@@ -19,6 +19,6 @@ const client = new DynamoDBClient({
 });
 
 const docClient = DynamoDBDocumentClient.from(client);
-const TABLE_NAME = process.env.DYNAMODB_TABLE || "PlayStationGames";
+const TABLE_NAME = process.env.DYNAMODB_TABLE || "PlayStationGames_v3";
 
 module.exports = { docClient, ScanCommand, TABLE_NAME };
