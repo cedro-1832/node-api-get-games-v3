@@ -12,6 +12,10 @@
         "region": "us-east-1",
         "environment": {
           "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
+          "AWS_REGION": "us-east-1",
+          "AWS_ACCESS_KEY_ID": "<REDACTED>",
+          "AWS_SECRET_ACCESS_KEY": "<REDACTED>",
+          "AWS_SESSION_TOKEN": "<REDACTED>",
           "DYNAMODB_TABLE": "PlayStationGames_v3",
           "JWT_SECRET": "<REDACTED>",
           "NODE_ENV": "production"
@@ -182,7 +186,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-us-east-1-3e2cf282-a30b",
-                  "S3Key": "serverless/get-games-api-v3/dev/1741625236373-2025-03-10T16:47:16.373Z/get-games-api-v3.zip"
+                  "S3Key": "serverless/get-games-api-v3/dev/1741625901421-2025-03-10T16:58:21.421Z/get-games-api-v3.zip"
                 },
                 "Handler": "server.handler",
                 "Runtime": "nodejs20.x",
@@ -192,6 +196,10 @@
                 "Environment": {
                   "Variables": {
                     "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
+                    "AWS_REGION": "us-east-1",
+                    "AWS_ACCESS_KEY_ID": "<REDACTED>",
+                    "AWS_SECRET_ACCESS_KEY": "<REDACTED>",
+                    "AWS_SESSION_TOKEN": "<REDACTED>",
                     "DYNAMODB_TABLE": "PlayStationGames_v3",
                     "JWT_SECRET": "<REDACTED>",
                     "NODE_ENV": "production"
@@ -208,14 +216,14 @@
                 "ApiLogGroup"
               ]
             },
-            "ApiLambdaVersiontloxyaF9owqjbZbYEIZOCWIE0dsOnlrVJGmCyxrCr1U": {
+            "ApiLambdaVersion5J9quXepC2hloGg9qrVYbGDXBO4ZmdOnDMbvGvs9A": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "ApiLambdaFunction"
                 },
-                "CodeSha256": "WeeGdz6r4nUFmxqa0eAwleb9dMp+4ByThaWZh+PDwxE="
+                "CodeSha256": "i4XbH6wKRdCzV+DGBoVTs3ymQlLdv96+rXUQwMU40M8="
               }
             },
             "ApiGatewayRestApi": {
@@ -348,7 +356,7 @@
                 "ApiLambdaPermissionApiGateway"
               ]
             },
-            "ApiGatewayDeployment1741625225026": {
+            "ApiGatewayDeployment1741625891534": {
               "Type": "AWS::ApiGateway::Deployment",
               "Properties": {
                 "RestApiId": {
@@ -418,7 +426,7 @@
             "ApiLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "ApiLambdaVersiontloxyaF9owqjbZbYEIZOCWIE0dsOnlrVJGmCyxrCr1U"
+                "Ref": "ApiLambdaVersion5J9quXepC2hloGg9qrVYbGDXBO4ZmdOnDMbvGvs9A"
               },
               "Export": {
                 "Name": "sls-get-games-api-v3-dev-ApiLambdaFunctionQualifiedArn"
@@ -489,7 +497,7 @@
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "ApiLambdaVersiontloxyaF9owqjbZbYEIZOCWIE0dsOnlrVJGmCyxrCr1U"
+          "versionLogicalId": "ApiLambdaVersion5J9quXepC2hloGg9qrVYbGDXBO4ZmdOnDMbvGvs9A"
         }
       },
       "resources": {
@@ -520,6 +528,10 @@
       "region": "us-east-1",
       "environment": {
         "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
+        "AWS_REGION": "us-east-1",
+        "AWS_ACCESS_KEY_ID": "<REDACTED>",
+        "AWS_SECRET_ACCESS_KEY": "<REDACTED>",
+        "AWS_SESSION_TOKEN": "<REDACTED>",
         "DYNAMODB_TABLE": "PlayStationGames_v3",
         "JWT_SECRET": "<REDACTED>",
         "NODE_ENV": "production"
@@ -690,7 +702,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-3e2cf282-a30b",
-                "S3Key": "serverless/get-games-api-v3/dev/1741625236373-2025-03-10T16:47:16.373Z/get-games-api-v3.zip"
+                "S3Key": "serverless/get-games-api-v3/dev/1741625901421-2025-03-10T16:58:21.421Z/get-games-api-v3.zip"
               },
               "Handler": "server.handler",
               "Runtime": "nodejs20.x",
@@ -700,6 +712,10 @@
               "Environment": {
                 "Variables": {
                   "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
+                  "AWS_REGION": "us-east-1",
+                  "AWS_ACCESS_KEY_ID": "<REDACTED>",
+                  "AWS_SECRET_ACCESS_KEY": "<REDACTED>",
+                  "AWS_SESSION_TOKEN": "<REDACTED>",
                   "DYNAMODB_TABLE": "PlayStationGames_v3",
                   "JWT_SECRET": "<REDACTED>",
                   "NODE_ENV": "production"
@@ -716,14 +732,14 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersiontloxyaF9owqjbZbYEIZOCWIE0dsOnlrVJGmCyxrCr1U": {
+          "ApiLambdaVersion5J9quXepC2hloGg9qrVYbGDXBO4ZmdOnDMbvGvs9A": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "WeeGdz6r4nUFmxqa0eAwleb9dMp+4ByThaWZh+PDwxE="
+              "CodeSha256": "i4XbH6wKRdCzV+DGBoVTs3ymQlLdv96+rXUQwMU40M8="
             }
           },
           "ApiGatewayRestApi": {
@@ -856,7 +872,7 @@
               "ApiLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1741625225026": {
+          "ApiGatewayDeployment1741625891534": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -926,7 +942,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersiontloxyaF9owqjbZbYEIZOCWIE0dsOnlrVJGmCyxrCr1U"
+              "Ref": "ApiLambdaVersion5J9quXepC2hloGg9qrVYbGDXBO4ZmdOnDMbvGvs9A"
             },
             "Export": {
               "Name": "sls-get-games-api-v3-dev-ApiLambdaFunctionQualifiedArn"
@@ -971,7 +987,12 @@
       "serviceProvider": null,
       "instanceParameters": null
     },
-    "serviceRawFile": "service: get-games-api-v3  # <-- Se añade la línea de definición del servicio\n\nprovider:\n  name: aws\n  runtime: nodejs20.x\n  stage: dev\n  region: us-east-1\n  environment:\n    AWS_NODEJS_CONNECTION_REUSE_ENABLED: \"1\"\n    DYNAMODB_TABLE: PlayStationGames_v3\n    JWT_SECRET: ${ssm:/serverless-api/JWT_SECRET, 'supersecreto'}\n    NODE_ENV: production\n  iam:\n    role:\n      statements:\n        - Effect: Allow\n          Action:\n            - logs:CreateLogGroup\n            - logs:CreateLogStream\n            - logs:PutLogEvents\n          Resource: \"arn:aws:logs:us-east-1:*:*\"\n\n        - Effect: Allow\n          Action:\n            - dynamodb:Scan\n            - dynamodb:GetItem\n            - dynamodb:Query\n          Resource: \n            - !Sub \"arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/PlayStationGames_v3\"\n\n        - Effect: Allow\n          Action:\n            - execute-api:Invoke\n          Resource: \n            - !Sub \"arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:*/*/*\"\n\nfunctions:\n  api:\n    handler: server.handler\n    events:\n      - http:\n          path: api/{proxy+}\n          method: any\n          cors: true\n\nresources:\n  Resources:\n    ApiGatewayRestApi:\n      Type: \"AWS::ApiGateway::RestApi\"\n      Properties:\n        Name: \"get-games-api-v3\"\n    ApiGatewayDeployment:\n      Type: \"AWS::ApiGateway::Deployment\"\n      Properties:\n        RestApiId:\n          Ref: ApiGatewayRestApi\n        StageName: dev\n",
+    "error": {
+      "message": "An error occurred: ApiLambdaFunction - Resource handler returned message: \"Lambda was unable to configure your environment variables because the environment variables you have provided contains reserved keys that are currently not supported for modification. Reserved keys used in this request: AWS_SESSION_TOKEN, AWS_REGION, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY (Service: Lambda, Status Code: 400, Request ID: 8200efae-ec9c-4426-b8fb-ea9ede06d565)\" (RequestToken: db6d9fbd-60eb-d1d7-d1a8-4c16d020b3da, HandlerErrorCode: InvalidRequest).",
+      "stack": "ServerlessError3: An error occurred: ApiLambdaFunction - Resource handler returned message: \"Lambda was unable to configure your environment variables because the environment variables you have provided contains reserved keys that are currently not supported for modification. Reserved keys used in this request: AWS_SESSION_TOKEN, AWS_REGION, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY (Service: Lambda, Status Code: 400, Request ID: 8200efae-ec9c-4426-b8fb-ea9ede06d565)\" (RequestToken: db6d9fbd-60eb-d1d7-d1a8-4c16d020b3da, HandlerErrorCode: InvalidRequest).\n    at file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1231:832\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async AwsDeploy.update (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1231:25551)\n    at async aws:deploy:deploy:updateStack (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1242:8029)\n    at async PluginManager.runHooks (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1433:9562)\n    at async PluginManager.invoke (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1433:10333)\n    at async PluginManager.spawn (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1433:10696)\n    at async PluginManager.runHooks (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1433:9562)\n    at async PluginManager.invoke (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1433:10333)\n    at async PluginManager.run (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1433:11068)",
+      "code": "AWS_CLOUD_FORMATION_UPDATE_STACK_INTERNAL_LAMBDA_FUNCTION_UPDATE_FAILED"
+    },
+    "serviceRawFile": "service: get-games-api-v3  # <-- Se añade la línea de definición del servicio\n\nprovider:\n  name: aws\n  runtime: nodejs20.x\n  stage: dev\n  region: us-east-1\n  environment:\n    AWS_NODEJS_CONNECTION_REUSE_ENABLED: \"1\"\n    AWS_REGION: us-east-1\n    AWS_ACCESS_KEY_ID: ${ssm:/serverless-api/AWS_ACCESS_KEY_ID, ''}\n    AWS_SECRET_ACCESS_KEY: ${ssm:/serverless-api/AWS_SECRET_ACCESS_KEY, ''}\n    AWS_SESSION_TOKEN: ${ssm:/serverless-api/AWS_SESSION_TOKEN, ''}\n    DYNAMODB_TABLE: PlayStationGames_v3\n    JWT_SECRET: ${ssm:/serverless-api/JWT_SECRET, 'supersecreto'}\n    NODE_ENV: production\n  iam:\n    role:\n      statements:\n        - Effect: Allow\n          Action:\n            - logs:CreateLogGroup\n            - logs:CreateLogStream\n            - logs:PutLogEvents\n          Resource: \"arn:aws:logs:us-east-1:*:*\"\n\n        - Effect: Allow\n          Action:\n            - dynamodb:Scan\n            - dynamodb:GetItem\n            - dynamodb:Query\n          Resource: \n            - !Sub \"arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/PlayStationGames_v3\"\n\n        - Effect: Allow\n          Action:\n            - execute-api:Invoke\n          Resource: \n            - !Sub \"arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:*/*/*\"\n\nfunctions:\n  api:\n    handler: server.handler\n    events:\n      - http:\n          path: api/{proxy+}\n          method: any\n          cors: true\n\nresources:\n  Resources:\n    ApiGatewayRestApi:\n      Type: \"AWS::ApiGateway::RestApi\"\n      Properties:\n        Name: \"get-games-api-v3\"\n    ApiGatewayDeployment:\n      Type: \"AWS::ApiGateway::Deployment\"\n      Properties:\n        RestApiId:\n          Ref: ApiGatewayRestApi\n        StageName: dev\n",
     "command": [
       "deploy"
     ],
@@ -988,12 +1009,12 @@
     "serviceProviderAwsCfStackName": "get-games-api-v3-dev",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:249181214292:stack/get-games-api-v3-dev/13742430-fb87-11ef-a084-0affd47d56c1",
     "serviceProviderAwsCfStackCreated": "2025-03-07T19:05:03.854Z",
-    "serviceProviderAwsCfStackUpdated": "2025-03-10T02:10:37.709Z",
+    "serviceProviderAwsCfStackUpdated": "2025-03-10T16:47:34.600Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "ApiLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:249181214292:function:get-games-api-v3-dev-api:22",
+        "OutputValue": "arn:aws:lambda:us-east-1:249181214292:function:get-games-api-v3-dev-api:23",
         "Description": "Current Lambda function version",
         "ExportName": "sls-get-games-api-v3-dev-ApiLambdaFunctionQualifiedArn"
       },
@@ -1008,402 +1029,6 @@
         "OutputValue": "serverless-framework-deployments-us-east-1-3e2cf282-a30b",
         "ExportName": "sls-get-games-api-v3-dev-ServerlessDeploymentBucketName"
       }
-    ],
-    "compiledCloudFormationTemplate": {
-      "AWSTemplateFormatVersion": "2010-09-09",
-      "Description": "The AWS CloudFormation template for this Serverless application",
-      "Resources": {
-        "ApiLogGroup": {
-          "Type": "AWS::Logs::LogGroup",
-          "Properties": {
-            "LogGroupName": "/aws/lambda/get-games-api-v3-dev-api"
-          }
-        },
-        "IamRoleLambdaExecution": {
-          "Type": "AWS::IAM::Role",
-          "Properties": {
-            "AssumeRolePolicyDocument": {
-              "Version": "2012-10-17",
-              "Statement": [
-                {
-                  "Effect": "Allow",
-                  "Principal": {
-                    "Service": [
-                      "lambda.amazonaws.com"
-                    ]
-                  },
-                  "Action": [
-                    "sts:AssumeRole"
-                  ]
-                }
-              ]
-            },
-            "Policies": [
-              {
-                "PolicyName": {
-                  "Fn::Join": [
-                    "-",
-                    [
-                      "get-games-api-v3",
-                      "dev",
-                      "lambda"
-                    ]
-                  ]
-                },
-                "PolicyDocument": {
-                  "Version": "2012-10-17",
-                  "Statement": [
-                    {
-                      "Effect": "Allow",
-                      "Action": [
-                        "logs:CreateLogStream",
-                        "logs:CreateLogGroup",
-                        "logs:TagResource"
-                      ],
-                      "Resource": [
-                        {
-                          "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/get-games-api-v3-dev*:*"
-                        }
-                      ]
-                    },
-                    {
-                      "Effect": "Allow",
-                      "Action": [
-                        "logs:PutLogEvents"
-                      ],
-                      "Resource": [
-                        {
-                          "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/get-games-api-v3-dev*:*:*"
-                        }
-                      ]
-                    },
-                    {
-                      "Effect": "Allow",
-                      "Action": [
-                        "logs:CreateLogGroup",
-                        "logs:CreateLogStream",
-                        "logs:PutLogEvents"
-                      ],
-                      "Resource": "arn:aws:logs:us-east-1:*:*"
-                    },
-                    {
-                      "Effect": "Allow",
-                      "Action": [
-                        "dynamodb:Scan",
-                        "dynamodb:GetItem",
-                        "dynamodb:Query"
-                      ],
-                      "Resource": [
-                        {
-                          "Fn::Sub": "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/PlayStationGames_v3"
-                        }
-                      ]
-                    },
-                    {
-                      "Effect": "Allow",
-                      "Action": [
-                        "execute-api:Invoke"
-                      ],
-                      "Resource": [
-                        {
-                          "Fn::Sub": "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:*/*/*"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              }
-            ],
-            "Path": "/",
-            "RoleName": {
-              "Fn::Join": [
-                "-",
-                [
-                  "get-games-api-v3",
-                  "dev",
-                  {
-                    "Ref": "AWS::Region"
-                  },
-                  "lambdaRole"
-                ]
-              ]
-            }
-          }
-        },
-        "ApiLambdaFunction": {
-          "Type": "AWS::Lambda::Function",
-          "Properties": {
-            "Code": {
-              "S3Bucket": "serverless-framework-deployments-us-east-1-3e2cf282-a30b",
-              "S3Key": "serverless/get-games-api-v3/dev/1741625236373-2025-03-10T16:47:16.373Z/get-games-api-v3.zip"
-            },
-            "Handler": "server.handler",
-            "Runtime": "nodejs20.x",
-            "FunctionName": "get-games-api-v3-dev-api",
-            "MemorySize": 1024,
-            "Timeout": 6,
-            "Environment": {
-              "Variables": {
-                "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
-                "DYNAMODB_TABLE": "PlayStationGames_v3",
-                "JWT_SECRET": "<REDACTED>",
-                "NODE_ENV": "production"
-              }
-            },
-            "Role": {
-              "Fn::GetAtt": [
-                "IamRoleLambdaExecution",
-                "Arn"
-              ]
-            }
-          },
-          "DependsOn": [
-            "ApiLogGroup"
-          ]
-        },
-        "ApiLambdaVersiontloxyaF9owqjbZbYEIZOCWIE0dsOnlrVJGmCyxrCr1U": {
-          "Type": "AWS::Lambda::Version",
-          "DeletionPolicy": "Retain",
-          "Properties": {
-            "FunctionName": {
-              "Ref": "ApiLambdaFunction"
-            },
-            "CodeSha256": "WeeGdz6r4nUFmxqa0eAwleb9dMp+4ByThaWZh+PDwxE="
-          }
-        },
-        "ApiGatewayRestApi": {
-          "Type": "AWS::ApiGateway::RestApi",
-          "Properties": {
-            "Name": "get-games-api-v3",
-            "EndpointConfiguration": {
-              "Types": [
-                "EDGE"
-              ]
-            },
-            "Policy": ""
-          }
-        },
-        "ApiGatewayResourceApi": {
-          "Type": "AWS::ApiGateway::Resource",
-          "Properties": {
-            "ParentId": {
-              "Fn::GetAtt": [
-                "ApiGatewayRestApi",
-                "RootResourceId"
-              ]
-            },
-            "PathPart": "api",
-            "RestApiId": {
-              "Ref": "ApiGatewayRestApi"
-            }
-          }
-        },
-        "ApiGatewayResourceApiProxyVar": {
-          "Type": "AWS::ApiGateway::Resource",
-          "Properties": {
-            "ParentId": {
-              "Ref": "ApiGatewayResourceApi"
-            },
-            "PathPart": "{proxy+}",
-            "RestApiId": {
-              "Ref": "ApiGatewayRestApi"
-            }
-          }
-        },
-        "ApiGatewayMethodApiProxyVarOptions": {
-          "Type": "AWS::ApiGateway::Method",
-          "Properties": {
-            "AuthorizationType": "NONE",
-            "HttpMethod": "OPTIONS",
-            "MethodResponses": [
-              {
-                "StatusCode": "200",
-                "ResponseParameters": {
-                  "method.response.header.Access-Control-Allow-Origin": true,
-                  "method.response.header.Access-Control-Allow-Headers": true,
-                  "method.response.header.Access-Control-Allow-Methods": true
-                },
-                "ResponseModels": {}
-              }
-            ],
-            "RequestParameters": {},
-            "Integration": {
-              "Type": "MOCK",
-              "RequestTemplates": {
-                "application/json": "{statusCode:200}"
-              },
-              "ContentHandling": "CONVERT_TO_TEXT",
-              "IntegrationResponses": [
-                {
-                  "StatusCode": "200",
-                  "ResponseParameters": {
-                    "method.response.header.Access-Control-Allow-Origin": "'*'",
-                    "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                    "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE,GET,HEAD,PATCH,POST,PUT'"
-                  },
-                  "ResponseTemplates": {
-                    "application/json": ""
-                  }
-                }
-              ]
-            },
-            "ResourceId": {
-              "Ref": "ApiGatewayResourceApiProxyVar"
-            },
-            "RestApiId": {
-              "Ref": "ApiGatewayRestApi"
-            }
-          }
-        },
-        "ApiGatewayMethodApiProxyVarAny": {
-          "Type": "AWS::ApiGateway::Method",
-          "Properties": {
-            "HttpMethod": "ANY",
-            "RequestParameters": {},
-            "ResourceId": {
-              "Ref": "ApiGatewayResourceApiProxyVar"
-            },
-            "RestApiId": {
-              "Ref": "ApiGatewayRestApi"
-            },
-            "ApiKeyRequired": "<REDACTED>",
-            "AuthorizationType": "NONE",
-            "Integration": {
-              "IntegrationHttpMethod": "POST",
-              "Type": "AWS_PROXY",
-              "Uri": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":apigateway:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":lambda:path/2015-03-31/functions/",
-                    {
-                      "Fn::GetAtt": [
-                        "ApiLambdaFunction",
-                        "Arn"
-                      ]
-                    },
-                    "/invocations"
-                  ]
-                ]
-              }
-            },
-            "MethodResponses": []
-          },
-          "DependsOn": [
-            "ApiLambdaPermissionApiGateway"
-          ]
-        },
-        "ApiGatewayDeployment1741625225026": {
-          "Type": "AWS::ApiGateway::Deployment",
-          "Properties": {
-            "RestApiId": {
-              "Ref": "ApiGatewayRestApi"
-            },
-            "StageName": "dev"
-          },
-          "DependsOn": [
-            "ApiGatewayMethodApiProxyVarOptions",
-            "ApiGatewayMethodApiProxyVarAny"
-          ]
-        },
-        "ApiLambdaPermissionApiGateway": {
-          "Type": "AWS::Lambda::Permission",
-          "Properties": {
-            "FunctionName": {
-              "Fn::GetAtt": [
-                "ApiLambdaFunction",
-                "Arn"
-              ]
-            },
-            "Action": "lambda:InvokeFunction",
-            "Principal": "apigateway.amazonaws.com",
-            "SourceArn": {
-              "Fn::Join": [
-                "",
-                [
-                  "arn:",
-                  {
-                    "Ref": "AWS::Partition"
-                  },
-                  ":execute-api:",
-                  {
-                    "Ref": "AWS::Region"
-                  },
-                  ":",
-                  {
-                    "Ref": "AWS::AccountId"
-                  },
-                  ":",
-                  {
-                    "Ref": "ApiGatewayRestApi"
-                  },
-                  "/*/*"
-                ]
-              ]
-            }
-          }
-        },
-        "ApiGatewayDeployment": {
-          "Type": "AWS::ApiGateway::Deployment",
-          "Properties": {
-            "RestApiId": {
-              "Ref": "ApiGatewayRestApi"
-            },
-            "StageName": "dev"
-          }
-        }
-      },
-      "Outputs": {
-        "ServerlessDeploymentBucketName": {
-          "Value": "serverless-framework-deployments-us-east-1-3e2cf282-a30b",
-          "Export": {
-            "Name": "sls-get-games-api-v3-dev-ServerlessDeploymentBucketName"
-          }
-        },
-        "ApiLambdaFunctionQualifiedArn": {
-          "Description": "Current Lambda function version",
-          "Value": {
-            "Ref": "ApiLambdaVersiontloxyaF9owqjbZbYEIZOCWIE0dsOnlrVJGmCyxrCr1U"
-          },
-          "Export": {
-            "Name": "sls-get-games-api-v3-dev-ApiLambdaFunctionQualifiedArn"
-          }
-        },
-        "ServiceEndpoint": {
-          "Description": "URL of the service endpoint",
-          "Value": {
-            "Fn::Join": [
-              "",
-              [
-                "https://",
-                {
-                  "Ref": "ApiGatewayRestApi"
-                },
-                ".execute-api.",
-                {
-                  "Ref": "AWS::Region"
-                },
-                ".",
-                {
-                  "Ref": "AWS::URLSuffix"
-                },
-                "/dev"
-              ]
-            ]
-          },
-          "Export": {
-            "Name": "sls-get-games-api-v3-dev-ServiceEndpoint"
-          }
-        }
-      }
-    }
+    ]
   }
 }
