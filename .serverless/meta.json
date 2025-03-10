@@ -4,6 +4,7 @@
     "servicePath": "/Users/ic-2024/Project/node-api-get-games-v3/serverless.yml",
     "serviceConfigFileName": "serverless.yml",
     "service": {
+      "service": "get-games-api-v3",
       "provider": {
         "name": "aws",
         "runtime": "nodejs20.x",
@@ -52,6 +53,20 @@
                 ]
               }
             ]
+          }
+        },
+        "versionFunctions": true,
+        "compiledCloudFormationTemplate": {
+          "AWSTemplateFormatVersion": "2010-09-09",
+          "Description": "The AWS CloudFormation template for this Serverless application",
+          "Resources": {},
+          "Outputs": {
+            "ServerlessDeploymentBucketName": {
+              "Value": "serverless-framework-deployments-us-east-1-3e2cf282-a30b",
+              "Export": {
+                "Name": "sls-get-games-api-v3-dev-ServerlessDeploymentBucketName"
+              }
+            }
           }
         }
       }
@@ -105,6 +120,20 @@
             }
           ]
         }
+      },
+      "versionFunctions": true,
+      "compiledCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {},
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": "serverless-framework-deployments-us-east-1-3e2cf282-a30b",
+            "Export": {
+              "Name": "sls-get-games-api-v3-dev-ServerlessDeploymentBucketName"
+            }
+          }
+        }
       }
     },
     "dashboard": {
@@ -117,11 +146,11 @@
       "instanceParameters": null
     },
     "error": {
-      "message": "\"service\" property is missing in serverless",
-      "stack": "ServerlessError3: \"service\" property is missing in serverless\n    at Service.loadServiceFileParam (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1434:9388)\n    at Service.load (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1434:6921)\n    at Serverless.init (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1440:9859)\n    at runFramework (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1467:855)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async TraditionalRunner.run (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1463:28364)\n    at async route (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1509:2779)\n    at async Object.run (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1510:3668)\n    at async run2 (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1510:4821)",
-      "code": "SERVICE_NAME_MISSING"
+      "message": "The CloudFormation template is invalid: Template format error: At least one Resources member must be defined.",
+      "stack": "ServerlessError3: The CloudFormation template is invalid: Template format error: At least one Resources member must be defined.\n    at file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1231:21797\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async aws:deploy:deploy:validateTemplate (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1242:7718)\n    at async PluginManager.runHooks (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1433:9562)\n    at async PluginManager.invoke (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1433:10333)\n    at async PluginManager.spawn (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1433:10696)\n    at async PluginManager.runHooks (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1433:9562)\n    at async PluginManager.invoke (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1433:10333)\n    at async PluginManager.run (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1433:11068)\n    at async Serverless.run (file:///Users/ic-2024/.serverless/releases/4.7.0/package/dist/sf-core.js:1440:10575)",
+      "code": "INVALID_AWS_CLOUDFORMATION_TEMPLATE"
     },
-    "serviceRawFile": "provider:\n  name: aws\n  runtime: nodejs20.x\n  stage: dev\n  region: us-east-1\n  environment:\n    AWS_NODEJS_CONNECTION_REUSE_ENABLED: \"1\"\n    DYNAMODB_TABLE: PlayStationGames_v3\n    JWT_SECRET: ${ssm:/serverless-api/JWT_SECRET, 'supersecreto'}\n    NODE_ENV: production\n  iam:\n    role:\n      statements:\n        - Effect: Allow\n          Action:\n            - logs:CreateLogGroup\n            - logs:CreateLogStream\n            - logs:PutLogEvents\n          Resource: \"arn:aws:logs:us-east-1:*:*\"\n\n        - Effect: Allow\n          Action:\n            - dynamodb:Scan\n            - dynamodb:GetItem\n            - dynamodb:Query\n          Resource: \n            - !Sub \"arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/PlayStationGames\"\n\n        - Effect: Allow\n          Action:\n            - execute-api:Invoke\n          Resource: \n            - !Sub \"arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:*/*/*\"\n",
+    "serviceRawFile": "service: get-games-api-v3  # Agregar esta línea al inicio\n\nprovider:\n  name: aws\n  runtime: nodejs20.x\n  stage: dev\n  region: us-east-1\n  environment:\n    AWS_NODEJS_CONNECTION_REUSE_ENABLED: \"1\"\n    DYNAMODB_TABLE: PlayStationGames_v3\n    JWT_SECRET: ${ssm:/serverless-api/JWT_SECRET, 'supersecreto'}\n    NODE_ENV: production\n  iam:\n    role:\n      statements:\n        - Effect: Allow\n          Action:\n            - logs:CreateLogGroup\n            - logs:CreateLogStream\n            - logs:PutLogEvents\n          Resource: \"arn:aws:logs:us-east-1:*:*\"\n\n        - Effect: Allow\n          Action:\n            - dynamodb:Scan\n            - dynamodb:GetItem\n            - dynamodb:Query\n          Resource: \n            - !Sub \"arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/PlayStationGames\"\n\n        - Effect: Allow\n          Action:\n            - execute-api:Invoke\n          Resource: \n            - !Sub \"arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:*/*/*\"\n",
     "command": [
       "deploy"
     ],
@@ -135,14 +164,15 @@
     "userId": "1ytfsT1QPc1svLTf11",
     "userName": "ianews2025",
     "serviceProviderAwsAccountId": "249181214292",
+    "serviceProviderAwsCfStackName": "get-games-api-v3-dev",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:249181214292:stack/get-games-api-v3-dev/13742430-fb87-11ef-a084-0affd47d56c1",
     "serviceProviderAwsCfStackCreated": "2025-03-07T19:05:03.854Z",
-    "serviceProviderAwsCfStackUpdated": "2025-03-09T22:16:33.830Z",
+    "serviceProviderAwsCfStackUpdated": "2025-03-10T00:57:11.739Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "ApiLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:249181214292:function:get-games-api-v3-dev-api:18",
+        "OutputValue": "arn:aws:lambda:us-east-1:249181214292:function:get-games-api-v3-dev-api:19",
         "Description": "Current Lambda function version",
         "ExportName": "sls-get-games-api-v3-dev-ApiLambdaFunctionQualifiedArn"
       },
