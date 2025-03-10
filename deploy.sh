@@ -7,15 +7,18 @@ AWS_PROFILE="serverless-deployer"
 echo "⚙️ Configurando AWS_PROFILE correctamente..."
 export AWS_PROFILE="$AWS_PROFILE"
 
+# Eliminar credenciales previas
 unset AWS_ACCESS_KEY_ID
 unset AWS_SECRET_ACCESS_KEY
+unset AWS_SESSION_TOKEN
 
-CURRENT_USER=$(aws sts get-caller-identity --query 'Arn' --output text --profile "$AWS_PROFILE")
-
-if [ -z "$CURRENT_USER" ]; then
-  echo "❌ Error: No se pudo autenticar con AWS. Verifica el perfil '$AWS_PROFILE'."
+# Validar credenciales con AWS
+if ! aws sts get-caller-identity --profile "$AWS_PROFILE" &>/dev/null; then
+  echo "❌ ERROR: No se pudo autenticar con AWS. Verifica el perfil '$AWS_PROFILE' y las credenciales almacenadas."
   exit 1
 fi
+
+CURRENT_USER=$(aws sts get-caller-identity --query 'Arn' --output text --profile "$AWS_PROFILE")
 
 echo "✅ AWS_PROFILE configurado como: $AWS_PROFILE"
 echo "👤 Usuario autenticado: $CURRENT_USER"
