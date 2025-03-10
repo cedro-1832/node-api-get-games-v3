@@ -56,12 +56,8 @@ exports.getGames = async (req, res, next) => {
             return res.status(404).json({ message: "No se encontraron juegos con los filtros aplicados" });
         }
 
-        res.status(200).json({
-            games,
-            _links: {
-                self: { href: "/api/games" }
-            }
-        });
+        res.status(200).json({ games });
+
     } catch (error) {
         console.error("❌ ERROR en getGames:", error);
         next(error);

@@ -11,7 +11,7 @@ const express = require("express");
 const serverless = require("serverless-http");
 
 const app = express();
-const PORT = process.env.PORT || 4000;  // Asegurar que use el puerto correcto
+const PORT = process.env.PORT || 4000;
 app.use(express.json());
 
 const gameRoutes = require("./src/routes/gameRoutes");

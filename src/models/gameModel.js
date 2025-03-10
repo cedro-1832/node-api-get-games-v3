@@ -6,13 +6,11 @@ const GameModel = {
             const command = new ScanCommand({ TableName: TABLE_NAME });
             const response = await docClient.send(command);
 
-            // Validar si hay elementos en la tabla
             if (!response.Items || response.Items.length === 0) {
                 console.warn("⚠️ No se encontraron juegos en la base de datos.");
                 return [];
             }
 
-            // Mapear los datos y asegurarnos de que los campos estén en el orden correcto
             return response.Items.map(game => ({
                 play_guid: game.play_guid || "GUID-NO-DATA",
                 play_fecha_extraccion: game.play_fecha_extraccion || new Date().toISOString(),
@@ -31,6 +29,9 @@ const GameModel = {
 
         } catch (error) {
             console.error("❌ ERROR al obtener juegos de DynamoDB:", error);
+            if (error.name === "UnrecognizedClientException") {
+                throw new Error("Error de autenticación con AWS: revisa las credenciales o el perfil configurado.");
+            }
             throw new Error("No se pudieron obtener los juegos");
         }
     }
