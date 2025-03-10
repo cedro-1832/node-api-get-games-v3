@@ -1,46 +1,48 @@
 #!/bin/bash
+set -e  # Detener el script en caso de error
 
-echo "🚀 Iniciando el servidor Node.js..."
+AWS_REGION="us-east-1"
+AWS_PROFILE="serverless-deployer"
 
-# 1️⃣ Detener todos los procesos de Node.js antes de iniciar el servidor
-echo "🛑 Matando todos los procesos de Node.js..."
-pkill -f node 2>/dev/null || true
-sleep 2  # Espera antes de continuar
+echo "⚙️ Configurando AWS_PROFILE correctamente..."
+export AWS_PROFILE="$AWS_PROFILE"
 
-# 2️⃣ Verificar si el puerto 4000 sigue en uso
-PORT=4000
-PIDS=$(lsof -ti :$PORT)
+unset AWS_ACCESS_KEY_ID
+unset AWS_SECRET_ACCESS_KEY
 
-if [ ! -z "$PIDS" ]; then
-  echo "🛑 Matando proceso(s) en el puerto $PORT (PIDs: $PIDS)..."
-  kill -9 $PIDS
-  sleep 2
-else
-  echo "✅ No hay procesos en el puerto $PORT."
-fi
+CURRENT_USER=$(aws sts get-caller-identity --query 'Arn' --output text --profile "$AWS_PROFILE")
 
-# 3️⃣ Verificar Node.js y npm
-if ! command -v node &> /dev/null || ! command -v npm &> /dev/null; then
-  echo "❌ Node.js o npm no están instalados. Instálalos con 'brew install node'."
+if [ -z "$CURRENT_USER" ]; then
+  echo "❌ Error: No se pudo autenticar con AWS. Verifica el perfil '$AWS_PROFILE'."
   exit 1
 fi
 
-# 4️⃣ Limpiar dependencias previas si existen
-if [ -d "node_modules" ] || [ -f "package-lock.json" ]; then
-  echo "🧹 Limpiando dependencias..."
-  sudo chown -R $(whoami) ~/.npm
-  sudo chown -R $(whoami) node_modules || true
-  sudo rm -rf node_modules package-lock.json
-  npm cache clean --force
+echo "✅ AWS_PROFILE configurado como: $AWS_PROFILE"
+echo "👤 Usuario autenticado: $CURRENT_USER"
+
+BUCKET_NAME="serverless-framework-deployments-us-east-1-$(aws sts get-caller-identity --query 'Account' --output text --profile "$AWS_PROFILE")"
+
+echo "🔍 Verificando bucket S3: $BUCKET_NAME..."
+if ! aws s3 ls "s3://$BUCKET_NAME" --profile "$AWS_PROFILE" --region "$AWS_REGION" &>/dev/null; then
+  echo "⚠️ Bucket no encontrado. Creándolo..."
+  aws s3 mb "s3://$BUCKET_NAME" --region "$AWS_REGION" --profile "$AWS_PROFILE"
+  echo "✅ Bucket $BUCKET_NAME creado exitosamente."
+else
+  echo "✅ Bucket $BUCKET_NAME ya existe."
 fi
 
-# 5️⃣ Reinstalar dependencias
-echo "📦 Instalando dependencias..."
-npm install --silent --omit=dev
+echo "🚀 Iniciando despliegue de la API Get Games en AWS..."
 
-# 6️⃣ Iniciar servidor con nodemon
-echo "🚀 Iniciando el servidor..."
-npx nodemon server.js &
+echo "📦 Limpiando e instalando dependencias necesarias..."
+sudo chown -R $(whoami) ~/.npm
+sudo chown -R $(whoami) node_modules || true
+rm -rf node_modules package-lock.json
+npm cache clean --force
+npm install --omit=dev  # Instalar solo dependencias de producción
 
-sleep 3
-echo "🎯 Servidor corriendo en http://localhost:$PORT"
+echo "🔍 Verificando credenciales de AWS antes de desplegar..."
+aws sts get-caller-identity --profile "$AWS_PROFILE"
+
+serverless deploy --stage dev --region "$AWS_REGION" --aws-profile "$AWS_PROFILE"
+
+echo "🎉 Despliegue completado exitosamente 🚀"
