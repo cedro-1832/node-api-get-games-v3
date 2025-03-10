@@ -124,7 +124,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-3e2cf282-a30b",
-          "S3Key": "serverless/get-games-api-v3/dev/1741625901421-2025-03-10T16:58:21.421Z/get-games-api-v3.zip"
+          "S3Key": "serverless/get-games-api-v3/dev/1741626440993-2025-03-10T17:07:20.993Z/get-games-api-v3.zip"
         },
         "Handler": "server.handler",
         "Runtime": "nodejs20.x",
@@ -134,10 +134,6 @@
         "Environment": {
           "Variables": {
             "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
-            "AWS_REGION": "us-east-1",
-            "AWS_ACCESS_KEY_ID": "",
-            "AWS_SECRET_ACCESS_KEY": "",
-            "AWS_SESSION_TOKEN": "",
             "DYNAMODB_TABLE": "PlayStationGames_v3",
             "JWT_SECRET": "supersecreto",
             "NODE_ENV": "production"
@@ -154,14 +150,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersion5J9quXepC2hloGg9qrVYbGDXBO4ZmdOnDMbvGvs9A": {
+    "ApiLambdaVersionLdvwDnfWoIxG8mf9miAoCE58Od45csns1il7A2mkwK0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "i4XbH6wKRdCzV+DGBoVTs3ymQlLdv96+rXUQwMU40M8="
+        "CodeSha256": "WqqvUgetpzFjYMe8fa5grXngR8XOl6G2I03SH7lzx+U="
       }
     },
     "ApiGatewayRestApi": {
@@ -294,7 +290,7 @@
         "ApiLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1741625891534": {
+    "ApiGatewayDeployment1741626431038": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -364,7 +360,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersion5J9quXepC2hloGg9qrVYbGDXBO4ZmdOnDMbvGvs9A"
+        "Ref": "ApiLambdaVersionLdvwDnfWoIxG8mf9miAoCE58Od45csns1il7A2mkwK0"
       },
       "Export": {
         "Name": "sls-get-games-api-v3-dev-ApiLambdaFunctionQualifiedArn"

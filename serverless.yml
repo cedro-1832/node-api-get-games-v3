@@ -7,10 +7,6 @@ provider:
   region: us-east-1
   environment:
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
-    AWS_REGION: us-east-1
-    AWS_ACCESS_KEY_ID: ${ssm:/serverless-api/AWS_ACCESS_KEY_ID, ''}
-    AWS_SECRET_ACCESS_KEY: ${ssm:/serverless-api/AWS_SECRET_ACCESS_KEY, ''}
-    AWS_SESSION_TOKEN: ${ssm:/serverless-api/AWS_SESSION_TOKEN, ''}
     DYNAMODB_TABLE: PlayStationGames_v3
     JWT_SECRET: ${ssm:/serverless-api/JWT_SECRET, 'supersecreto'}
     NODE_ENV: production
