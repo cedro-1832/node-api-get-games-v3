@@ -40,6 +40,9 @@ rm -rf node_modules package-lock.json
 npm cache clean --force
 npm install --omit=dev  # Instalar solo dependencias de producción
 
+echo "🔍 Verificando credenciales de AWS antes de desplegar..."
+aws sts get-caller-identity --profile "$AWS_PROFILE"
+
 serverless deploy --stage dev --region "$AWS_REGION" --aws-profile "$AWS_PROFILE"
 
 echo "🎉 Despliegue completado exitosamente 🚀"

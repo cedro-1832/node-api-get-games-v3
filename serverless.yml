@@ -1,3 +1,5 @@
+service: get-games-api-v3  # Agregar esta línea al inicio
+
 provider:
   name: aws
   runtime: nodejs20.x

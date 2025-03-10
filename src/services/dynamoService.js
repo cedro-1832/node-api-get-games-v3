@@ -4,18 +4,19 @@ require('dotenv').config({ path: __dirname + '/../../.env' });
 
 const AWS_REGION = process.env.AWS_REGION || "us-east-1";
 
-// Validar credenciales de AWS antes de iniciar el cliente de DynamoDB
-if (!process.env.AWS_ACCESS_KEY_ID || !process.env.AWS_SECRET_ACCESS_KEY) {
-    console.warn("⚠️ AWS_ACCESS_KEY_ID o AWS_SECRET_ACCESS_KEY no están configurados. Se intentará usar el perfil AWS_PROFILE.");
+const credentials = process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY ? {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+} : undefined;
+
+if (!credentials) {
+    console.warn("⚠️ No se encontraron credenciales explícitas, usando AWS_PROFILE.");
 }
 
 // Configurar cliente de DynamoDB
 const client = new DynamoDBClient({
     region: AWS_REGION,
-    credentials: process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY ? {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-    } : undefined
+    credentials
 });
 
 const docClient = DynamoDBDocumentClient.from(client);
